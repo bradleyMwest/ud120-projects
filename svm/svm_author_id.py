@@ -27,19 +27,26 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
-cfactor_list =  [1.0, 10.0, 100.0, 1000.0, 10000.0]
+
 gam = 'auto'
+cfactor = 10000.0
 
 features_train = features_train[:len(features_train)/100] 
 labels_train = labels_train[:len(labels_train)/100] 
-for cfactor in cfactor_list:
-	clf = SVC(C=cfactor,kernel="rbf",gamma=gam)
-	clf.fit(features_train,labels_train)
-	pred = clf.predict(features_test)
-	acc = accuracy_score(pred, labels_test)
 
-	print 'RBF-SVM accuracy for Cfactor', cfactor,'is', round(acc*100,2), '%'
+clf = SVC(C=cfactor,kernel="rbf",gamma=gam)
+clf.fit(features_train,labels_train)
+pred = clf.predict(features_test)
+acc = accuracy_score(pred, labels_test)
+print 'RBF-SVM accuracy for Cfactor', cfactor,'is', round(acc*100,2), '%'
 
+indexes = [10,26,50]
+for i in indexes
+	if pred[i] == 0:
+		Author = 'Sara'
+	elif pred[i] == 1:
+		Author = 'Chris'
+	print 'Email number', i, 'was authored by', Author
 #########################################################
 
 
