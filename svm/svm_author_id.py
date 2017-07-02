@@ -30,6 +30,9 @@ from sklearn.metrics import accuracy_score
 cfactor =  1.0
 gam = 'auto'
 
+features_train = features_train[:len(features_train)/100] 
+labels_train = labels_train[:len(labels_train)/100] 
+
 clf = SVC(C=cfactor,kernel="linear",gamma=gam)
 clf.fit(features_train,labels_train)
 pred = clf.predict(features_test)
