@@ -33,12 +33,12 @@ gam = 'auto'
 features_train = features_train[:len(features_train)/100] 
 labels_train = labels_train[:len(labels_train)/100] 
 
-clf = SVC(C=cfactor,kernel="linear",gamma=gam)
+clf = SVC(C=cfactor,kernel="rbf",gamma=gam)
 clf.fit(features_train,labels_train)
 pred = clf.predict(features_test)
 acc = accuracy_score(pred, labels_test)
 
-print acc
+print 'The accuracy of the SVM is ', round(acc*100,2), '%'
 
 #########################################################
 
