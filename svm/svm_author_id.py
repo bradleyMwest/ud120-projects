@@ -27,7 +27,7 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
-
+from time import time
 gam = 'auto'
 cfactor = 10000.0
 
@@ -35,13 +35,16 @@ features_train = features_train[:len(features_train)/100]
 labels_train = labels_train[:len(labels_train)/100] 
 
 clf = SVC(C=cfactor,kernel="rbf",gamma=gam)
+t0 = time()
 clf.fit(features_train,labels_train)
+print "training time:", round(time()-t0,3), "s"
+
 pred = clf.predict(features_test)
 acc = accuracy_score(pred, labels_test)
 print 'RBF-SVM accuracy for Cfactor', cfactor,'is', round(acc*100,2), '%'
 
-indexes = [10,26,50]
-for i in indexes
+email_nums = [10,26,50]
+for i in email_nums:
 	if pred[i] == 0:
 		Author = 'Sara'
 	elif pred[i] == 1:
