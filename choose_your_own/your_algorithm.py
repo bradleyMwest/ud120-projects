@@ -42,18 +42,30 @@ macc = 0
 samp_split = 17
 n_est = 2
 clf = RandomForestClassifier(	max_features=maxfeat, min_samples_split=samp_split,
-			criterion='entropy')
+			criterion='gini')
 t = time()
 clf.fit(features_train,labels_train)
 #print 'The trainign time is ', round(time()-t,2), 'seconds'
 pred = clf.predict(features_test)
 acc = accuracy_score(labels_test,pred)
 print 'n_est = ',n_est, 'min_samples_split=',samp_split,'max_features=',maxfeat
-print 'The accuracy is', round(acc*100,2), '%'
-# if acc > macc:
-	# macc = acc
-	# sav = [acc,n_est,samp_split, maxfeat]
-# print macc, sav
+print 'The Random Forest accuracy is', round(acc*100,2), '%'
+
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+lr = 0.5
+nest = 13
+for md in range(1,10,1):
+	clf = AdaBoostClassifier(DecisionTreeClassifier(criterion='entropy',splitter='random',max_depth=4),n_estimators=nest,learning_rate=lr,algorithm='SAMME')
+	t = time()
+	clf.fit(features_train,labels_train)
+	print 'The trainign time is ', round(time()-t,2), 'seconds'
+	pred = clf.predict(features_test)
+	acc = accuracy_score(labels_test,pred)
+	print 'The AdaBoost accuracy is', round(acc*100,2), '%', 'for max_depth=', md
+
+
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
