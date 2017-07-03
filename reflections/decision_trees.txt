@@ -11,3 +11,27 @@ min_samples_split
 What number of samples are required to add a new decision parameter
 the smaller the number the more complicated the decision boundary 
 default = 2; 
+
+more to come...
+
+
+Entropy: a measure of impurity in a bunch of samples
+decision trees find variables to make subsets as pure as possible 
+(get a subset with the most of 1 class)
+
+entropy = -sum(pi*log_2(pi))
+pi = fraction of examples of one group over the total
+
+information gain:
+entropy(parent) - [weighted average]*entropy(children)
+weighted average 
+=frac_of_children*entropy_of_class1 + frac_of_children*entropy_of_
+
+Strenghts:
+Easy to use out of the box
+Easy to make bigger classifiers with decision trees
+
+Weaknesses:
+Overfitting especially data with lots of features
+Careful with parameter tunes
+Make sure you stop the growth of the tree at the appropriate time
