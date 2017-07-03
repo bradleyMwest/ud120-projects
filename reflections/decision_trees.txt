@@ -1,0 +1,13 @@
+Quiz3:
+Decision trees ask a series of questions (tree)
+to make data linearly separable
+
+The part of computer learning is using a computer 
+to define where to split the data
+
+Parameters to tune
+
+min_samples_split
+What number of samples are required to add a new decision parameter
+the smaller the number the more complicated the decision boundary 
+default = 2; 
