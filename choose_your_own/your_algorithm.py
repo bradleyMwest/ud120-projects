@@ -17,28 +17,45 @@ bumpy_slow = [features_train[ii][1] for ii in range(0, len(features_train)) if l
 
 
 #### initial visualization
-plt.xlim(0.0, 1.0)
-plt.ylim(0.0, 1.0)
-plt.scatter(bumpy_fast, grade_fast, color = "b", label="fast")
-plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
-plt.legend()
-plt.xlabel("bumpiness")
-plt.ylabel("grade")
-plt.show()
+# plt.xlim(0.0, 1.0)
+# plt.ylim(0.0, 1.0)
+# plt.scatter(bumpy_fast, grade_fast, color = "b", label="fast")
+# plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
+# plt.legend()
+# plt.xlabel("bumpiness")
+# plt.ylabel("grade")
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from time import time
 
 
+maxfeat = 'sqrt'
+#samp_split = 5
 
-
-
-
-
+macc = 0
+samp_split = 17
+n_est = 2
+clf = RandomForestClassifier(	max_features=maxfeat, min_samples_split=samp_split,
+			criterion='entropy')
+t = time()
+clf.fit(features_train,labels_train)
+#print 'The trainign time is ', round(time()-t,2), 'seconds'
+pred = clf.predict(features_test)
+acc = accuracy_score(labels_test,pred)
+print 'n_est = ',n_est, 'min_samples_split=',samp_split,'max_features=',maxfeat
+print 'The accuracy is', round(acc*100,2), '%'
+# if acc > macc:
+	# macc = acc
+	# sav = [acc,n_est,samp_split, maxfeat]
+# print macc, sav
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
     pass
+plt.show()
