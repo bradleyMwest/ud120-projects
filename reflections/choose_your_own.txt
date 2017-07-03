@@ -1,0 +1,30 @@
+Pick one of these 3 and try it out
+
+k-nearest-neighbors -- simple-easy-to-understand
+
+adaboost "ensemble method"
+random forest "ensemble method"
+
+Process:
+(1) do research to get a general understanding
+(2) find some documentation
+(3) deploy it! get your hands dirty
+(4) make predictions
+(5) evaluate it -- what is the accuracy?
+
+AdaBoost is pretty cool - in that you can put 
+in any other type of classifier and tune their parameters 
+and as it goes through each iteration it focuses on the areas that are poorly classified
+
+RandomForest - Uses simplified decision trees on small subsets of the data and then averages the results together
+The idea is that by taking many poor fast classifiers (shallow decision trees), they can be aggregated into a good classifier
+where the variance in the poor solutions has the 'right' solution within it
+also makes the data less sensitive to noise/outliers. 
+Because some of the outlies will fall into some of the sub trees but not have a large impact on the final forest
+
+The weird thing with adaboost and random forest is that the accuracy for each of them is variable
+I got a distribution of accuracies when I ran the model with the same parameters 10+ times.
+This is probably something to consider when tuning/training these models. 
+
+I have not yet tried k-nearest neighbors. 
+
