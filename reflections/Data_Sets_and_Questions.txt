@@ -1,0 +1,19 @@
+What is a person of interest in the ENRON CORPUS dataset
+
+Katies definitions someone who:
+was indicted
+settled without admitting guilt
+testified in exchange for immunity
+
+accuracy vs. training set size:
+how many examples do you need to identify a person of interest
+more training events --> more accuracy
+
+
+more data is better than finely tuning an algorithmn
+
+Types of data:
+numerical-feature is a number (ie: salary information)
+categorial - class label (man/woman class 1 or 2)
+time series - date/timestamp 
+text - words
