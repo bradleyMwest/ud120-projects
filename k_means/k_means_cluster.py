@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
-
+from sklearn import preprocessing
 
 
 
@@ -44,7 +44,7 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 data_dict.pop("TOTAL", 0)
 NAMES = data_dict.keys()
 tmp_list = []
-LOOKFOR= "salary"
+LOOKFOR= "exercised_stock_options"
 for k in NAMES:
 	try:
 		data_dict[k][LOOKFOR]
@@ -58,6 +58,7 @@ for k in NAMES:
 	
 print 'The min value is: ',numpy.min(tmp_list)
 print 'The max value is: ',numpy.max(tmp_list)
+
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
