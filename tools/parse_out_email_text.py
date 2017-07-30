@@ -35,10 +35,13 @@ def parseOutText(f):
 		### space between each stemmed word)
 		from nltk.stem.snowball import SnowballStemmer
 		stemmer = SnowballStemmer("english")
-		split_string = text_string.split(' ')
+		
+		split_string = text_string.strip().split(' ')
 		stem_string = []
 		for i in split_string:
 			if i == '':
+				continue
+			if i == '\n':
 				continue
 			stem_string.append(stemmer.stem(i))
 		#print stemmer.stem(split_string)
