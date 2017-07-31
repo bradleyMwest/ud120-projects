@@ -43,8 +43,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 		### once everything is working, remove this line to run over full dataset
 		temp_counter += 1
 		#if temp_counter < 200:
-		path = os.path.normcase(path)
-		path = os.path.join('..', path[:-2])
+			#path = os.path.normcase(path)
+		path = os.path.join('F:/', path[:-1])
 		try:
 			email = open(path, "r")
 		except IOError:
@@ -53,11 +53,12 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 			
 		### use parseOutText to extract the text from the opened email
 		stem_email = parseOutText(email)
-		stem_email = ''.join(stem_email.splitlines())
+		stem_email = ' '.join(stem_email.splitlines())
 		### use str.replace() to remove any instances of the words
-		remove_words = ["sara", "shackleton", "chris", "germani"]
-		for i in remove_words:
-			stem_email = stem_email.replace(i,'')
+		
+		for w in ["sara", "shackleton", "chris", "germani"]: 
+			stem_email = stem_email.replace(w, "")
+
 		
 		### append the text to word_data
 		word_data.append(stem_email)
@@ -67,7 +68,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 			from_data.append(0)
 		elif name == "chis":
 			from_data.append(1)
-
+		if temp_counter%1000 == 0:
+			print temp_counter
 		email.close()
 
 print "emails processed"
@@ -89,6 +91,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(stop_words='english')
 vectorizer.fit(word_data)
 tfidf = vectorizer.fit_transform(word_data)
-print vectorizer.get_stop_words()
-print len(vectorizer.get_feature_names())
+#print vectorizer.get_stop_words()
+special_words = vectorizer.get_feature_names()
+print len(special_words)
+print special_words[34597]
 
