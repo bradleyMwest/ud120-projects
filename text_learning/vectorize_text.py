@@ -56,7 +56,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 		stem_email = ' '.join(stem_email.splitlines())
 		### use str.replace() to remove any instances of the words
 		
-		for w in ["sara", "shackleton", "chris", "germani"]: 
+		for w in ["sara", "shackleton", "chris", "germani","sshacklensf"]: 
 			stem_email = stem_email.replace(w, "")
 
 		
@@ -64,10 +64,13 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 		word_data.append(stem_email)
 		
 		### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
+
 		if name == "sara":
 			from_data.append(0)
-		elif name == "chis":
+		elif name == "chris":
 			from_data.append(1)
+		
+		
 		if temp_counter%1000 == 0:
 			print temp_counter
 		email.close()
