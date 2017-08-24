@@ -56,7 +56,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 		stem_email = ' '.join(stem_email.splitlines())
 		### use str.replace() to remove any instances of the words
 		
-		for w in ["sara", "shackleton", "chris", "germani","sshacklensf"]: 
+		for w in ["sara", "shackleton", "chris", "germani","sshacklensf","cgermannsf"]: 
 			stem_email = stem_email.replace(w, "")
 
 		

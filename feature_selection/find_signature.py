@@ -13,8 +13,6 @@ authors_file = "../text_learning/your_email_authors.pkl"
 word_data = pickle.load( open(words_file, "r"))
 authors = pickle.load( open(authors_file, "r") )
 
-
-
 ### test_size is the percentage of events assigned to the test set (the
 ### remainder go into training)
 ### feature matrices changed to dense representations for compatibility with
@@ -38,6 +36,21 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics  import accuracy_score
+clf = DecisionTreeClassifier()
+clf.fit(features_train,labels_train)
+train_pred = clf.predict(features_train)
+train_acc = accuracy_score(labels_train,train_pred)
+predict = clf.predict(features_test)
+acc = accuracy_score(labels_test,predict)
+importance = clf.feature_importances_ 
+print 'The training accuracy is ', round(train_acc,2)
+print 'The test accuracy is ', round(acc,2)
+print 'The number of training points is:', len(labels_train)
+print 'The importance of each feature is'
+print 'max:', max(importance),'\t index:', numpy.argmax(importance)
 
-
-
+for i in importance:
+	if i > 0.2:
+		print round(i,2), vectorizer.get_feature_names()[numpy.argmax(importance)] 
